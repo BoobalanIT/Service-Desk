@@ -1,0 +1,8 @@
+{
+  "name": "Service Desk",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "nx": "24.0.2"
+  }
+}

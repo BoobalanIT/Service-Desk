@@ -1,0 +1,169 @@
+/* Base layout */
+:host {
+    display: block;
+    min-height: 100vh;
+    color: #1e293b;
+    font-family: Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    padding: 24px 16px;
+    background: #172554;
+    color: white;
+}
+
+.sidebar h2 {
+    margin: 0 0 32px;
+}
+
+.sidebar nav {
+    display: grid;
+    gap: 8px;
+}
+
+.sidebar a {
+    padding: 12px;
+    color: #cbd5e1;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+    background: #334780;
+    color: white;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 32px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.topbar h1 {
+    margin: 0 0 8px;
+}
+
+.topbar p,
+.summary-card p {
+    color: #64748b;
+}
+
+button {
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+/* Summary cards */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.summary-card,
+.ticket-section {
+    padding: 24px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.summary-card h2 {
+    margin-bottom: 0;
+}
+
+/* Tickets table */
+.ticket-section h2 {
+    margin-top: 0;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 16px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+th {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 10px;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+    .sidebar {
+        width: 150px;
+    }
+
+    .main-content {
+        padding: 16px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+.high-priority {
+    color: red;
+}
+
+.medium-priority {
+    color: goldenrod;
+}
