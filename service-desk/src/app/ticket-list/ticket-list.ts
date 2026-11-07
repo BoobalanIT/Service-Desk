@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input/*, Output, EventEmitter*/ } from '@angular/core';
 import { Ticket } from '../ticket.model';
+import { TicketService } from '../ticket.service';
 
 @Component({
   selector: 'app-ticket-list',
@@ -9,11 +10,13 @@ import { Ticket } from '../ticket.model';
   styleUrl: './ticket-list.css',
 })
 export class TicketList {
-  // ✅ Receives ticket data FROM parent
+  // ✅ Receives ticket list from parent via @Input
   @Input() tickets: Ticket[] = [];
 
-  // ✅ Sends a new ticket event TO parent
-  @Output() ticketAdded = new EventEmitter<Ticket>();
+  // 📌 @Output concept — commented for reference
+  // @Output() ticketAdded = new EventEmitter<Ticket>();
+
+  constructor(private ticketService: TicketService) {}
 
   addTicket(): void {
     const newTicket: Ticket = {
@@ -22,7 +25,11 @@ export class TicketList {
       priority: 'Medium',
       status: 'Open',
     };
-    // Fire the event — parent will catch this
-    this.ticketAdded.emit(newTicket);
+
+    // ✅ Adds directly to service
+    this.ticketService.addTicket(newTicket);
+
+    // 📌 @Output concept — commented for reference
+    // this.ticketAdded.emit(newTicket);
   }
 }

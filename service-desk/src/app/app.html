@@ -57,8 +57,9 @@
 
           <tbody>
             <!-- ✅ [tickets] = @Input sending data DOWN to child -->
-      <!-- ✅ (ticketAdded) = @Output listening to event FROM child -->
-      <app-ticket-list [tickets]="tickets" (ticketAdded)="onTicketAdded($event)" />
+      <!-- 📌 @Output concept — commented for reference -->
+      <!-- <app-ticket-list [tickets]="tickets" (ticketAdded)="onTicketAdded($event)" /> -->
+      <app-ticket-list [tickets]="tickets" />
           </tbody>
         </table>
       </div>

@@ -1,8 +1,7 @@
-
 import { Component } from '@angular/core';
 import { TicketList } from './ticket-list/ticket-list';
 import { Ticket } from './ticket.model';
-//import { JsonPipe } from '@angular/common';
+import { TicketService } from './ticket.service';
 
 @Component({
   selector: 'app-root',
@@ -14,47 +13,26 @@ import { Ticket } from './ticket.model';
 export class App {
   appName = 'ServiceDesk';
 
-  tickets: Ticket[] = [
-    { id: 101, title: 'Login issue', priority: 'High', status: 'Open' },
-    { id: 102, title: 'Update details', priority: 'Low', status: 'Resolved' }
-  ];
+  constructor(public ticketService: TicketService) {}
 
-  addTicket(): any {
-    const newticket: Ticket = {
-      id: Date.now(),
-      title: 'New',
-      priority: 'Low',
-      status: 'Open',
-    };
-    this.tickets = [...this.tickets, newticket];
-  }
-
-  // ✅ This method is called when child emits @Output ticketAdded event
-  onTicketAdded(ticket: Ticket): void {
-    this.tickets = [...this.tickets, ticket];
-    // Dashboard counts (openCount, resolvedCount, progressCount) auto-update
-    // because they are getters that read from this.tickets
+  get tickets(): Ticket[] {
+    return this.ticketService.getTickets();
   }
 
   get openCount(): number {
-    return this.tickets.filter(
-      ticket => ticket.status === 'Open'
-    ).length;
+    return this.ticketService.getOpenCount();
   }
 
   get resolvedCount(): number {
-    return this.tickets.filter(
-      ticket => ticket.status === 'Resolved'
-    ).length;
+    return this.ticketService.getResolvedCount();
   }
 
   get progressCount(): number {
-    return this.tickets.filter(
-      ticket => ticket.status === 'In Progress'
-    ).length;
+    return this.ticketService.getProgressCount();
   }
 
-  showMessage(): void {
-    alert('Ticket creation will be added next!');
-  }
+  // 📌 @Output concept — commented for reference
+  // onTicketAdded(ticket: Ticket): void {
+  //   this.ticketService.addTicket(ticket);
+  // }
 }
