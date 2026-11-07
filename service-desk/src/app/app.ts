@@ -29,6 +29,13 @@ export class App {
     this.tickets = [...this.tickets, newticket];
   }
 
+  // ✅ This method is called when child emits @Output ticketAdded event
+  onTicketAdded(ticket: Ticket): void {
+    this.tickets = [...this.tickets, ticket];
+    // Dashboard counts (openCount, resolvedCount, progressCount) auto-update
+    // because they are getters that read from this.tickets
+  }
+
   get openCount(): number {
     return this.tickets.filter(
       ticket => ticket.status === 'Open'

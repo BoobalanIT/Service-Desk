@@ -30,3 +30,18 @@ th {
 tbody tr:hover {
     background: #f8fafc;
 }
+
+/* Match the parent's button style */
+button {
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #1d4ed8;
+}

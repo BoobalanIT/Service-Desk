@@ -16,13 +16,6 @@
         <h1>Dashboard</h1>
         <p>Welcome back! Here is your service desk overview.</p>
       </div>
-
-      <button (click)="showMessage()">
-        + Create Ticket
-      </button>
-      <button (click)="addTicket()">
-        Add New Ticket
-      </button>
     </header>
 
     <section class="summary-grid">
@@ -63,7 +56,9 @@
           </thead>
 
           <tbody>
-            <app-ticket-list [tickets]="tickets" />
+            <!-- ✅ [tickets] = @Input sending data DOWN to child -->
+      <!-- ✅ (ticketAdded) = @Output listening to event FROM child -->
+      <app-ticket-list [tickets]="tickets" (ticketAdded)="onTicketAdded($event)" />
           </tbody>
         </table>
       </div>
