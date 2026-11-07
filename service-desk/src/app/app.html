@@ -20,6 +20,9 @@
       <button (click)="showMessage()">
         + Create Ticket
       </button>
+      <button (click)="addTicket()">
+        Add New Ticket
+      </button>
     </header>
 
     <section class="summary-grid">
@@ -60,19 +63,7 @@
           </thead>
 
           <tbody>
-            @for (ticket of tickets; track ticket.id) {
-            <tr>
-              <td>#{{ ticket.id }}</td>
-              <td>{{ ticket.title }}</td>
-              <td [class.high-priority]="ticket.priority === 'High'"
-                [class.medium-priority]="ticket.priority !== 'High'">{{ ticket.priority }}</td>
-              <td>
-                <span class="status">
-                  {{ ticket.status }}
-                </span>
-              </td>
-            </tr>
-            }
+            <app-ticket-list [tickets]="tickets" />
           </tbody>
         </table>
       </div>
@@ -80,5 +71,6 @@
       <p>No tickets found.</p>
       }
     </section>
+
   </main>
 </div>

@@ -1,19 +1,13 @@
 
 import { Component } from '@angular/core';
-import { JsonPipe } from '@angular/common';
-import { tick } from '@angular/core/testing';
-
-interface Ticket {
-  id: number;
-  title: string;
-  priority: 'Low' | 'Medium' | 'High';
-  status: 'Open' | 'In Progress' | 'Resolved';
-}
+import { TicketList } from './ticket-list/ticket-list';
+import { Ticket } from './ticket.model';
+//import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  // imports: [JsonPipe],
+  imports: [TicketList],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -21,37 +15,19 @@ export class App {
   appName = 'ServiceDesk';
 
   tickets: Ticket[] = [
-    {
-      id: 101,
-      title: 'Login page not working',
-      priority: 'High',
-      status: 'Open',
-    },
-    {
-      id: 102,
-      title: 'Update customer details',
-      priority: 'Medium',
-      status: 'In Progress',
-    },
-    {
-      id: 103,
-      title: 'Fix invoice calculation',
-      priority: 'High',
-      status: 'Resolved',
-    },
-    {
-      id: 104,
-      title: 'Improve dashboard loading',
-      priority: 'Low',
-      status: 'Open',
-    },
-    {
-      id: 105,
-      title: 'Update the UI',
-      priority: 'Low',
-      status: 'Open',
-    }
+    { id: 101, title: 'Login issue', priority: 'High', status: 'Open' },
+    { id: 102, title: 'Update details', priority: 'Low', status: 'Resolved' }
   ];
+
+  addTicket(): any {
+    const newticket: Ticket = {
+      id: Date.now(),
+      title: 'New',
+      priority: 'Low',
+      status: 'Open',
+    };
+    this.tickets = [...this.tickets, newticket];
+  }
 
   get openCount(): number {
     return this.tickets.filter(
